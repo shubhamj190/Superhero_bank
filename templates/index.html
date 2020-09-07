@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superhero Bank Ltd.</title>
+
+    <!-- Bootstrap style sheet -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    <!-- navbar starts here -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <a class="navbar-brand" href="./index.html">Superhero Bank Ltd.</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+              <form action="form" method="POST">
+                <button type="submit" class="btn btn-success mr-3">New Entry</button>
+              </form>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search entry" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <div class="container">
+        <table class="table mt-3">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Account</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Balance (USD $)</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+            {%for x in row: %}
+              <tr>
+                <td>{{x.0}}</td>
+                <td>{{x.1}}</td>
+                <td>{{x.2}}</td>
+                <td>{{x.3}}</td>
+                <td>{{x.4}}</td>
+                <td><button type="button" class="btn btn-success"><a href="edit/{{x.0}}" style="text-decoration: none; color: white;">Edit</a></button></td>
+                <td><button type="button" class="btn btn-danger" id="delete"><a href="delete/{{x.0}}" style="text-decoration: none; color: white;">Delete</a></button></td>
+              </tr>
+            {% endfor %}
+              
+            </tbody>
+          </table>
+      </div>
+      <!-- navbar ends here -->
+      <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+      <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+      <script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
+</html>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you sure do want to delete the Entry?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary" id="yesbutton">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- Modal -->
